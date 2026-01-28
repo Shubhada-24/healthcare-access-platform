@@ -8,10 +8,11 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { doctorAppointments, mockDoctorPatientChat } from "@/data/mock";
+import { PrescriptionEditor } from "@/components/doctor/prescription-editor";
+import { UpdateStatus } from "@/components/doctor/update-status";
 import {
   Activity,
   MessageCircle,
-  Pill,
   Stethoscope,
   User2,
 } from "lucide-react";
@@ -97,34 +98,11 @@ export default function DoctorAppointmentPage({
                   <p>Immediate ER referral · ECG · cardiac enzymes.</p>
                 </div>
               </div>
-              <div className="space-y-1">
-                <p className="text-xs font-medium uppercase tracking-wide text-slate-500">
-                  Prescription (demo only)
-                </p>
-                <div className="rounded-lg bg-white/80 p-2 text-xs ring-1 ring-emerald-100 dark:bg-slate-950/80 dark:ring-slate-800">
-                  <p>
-                    <span className="font-semibold">Tab Aspirin 150 mg</span> –
-                    stat, then once daily.
-                  </p>
-                  <p>
-                    <span className="font-semibold">Tab Atorvastatin 80 mg</span>{" "}
-                    – at night.
-                  </p>
-                  <p>
-                    <span className="font-semibold">
-                      Immediate referral to nearest cath‑lab enabled centre.
-                    </span>
-                  </p>
-                </div>
-                <Button size="sm" variant="secondary" className="mt-1 w-full">
-                  <Pill className="mr-1.5 h-3.5 w-3.5" />
-                  Edit prescription (no save – for demo)
-                </Button>
-              </div>
+              <PrescriptionEditor />
             </CardContent>
           </Card>
 
-          <Card>
+          <Card id="chat" className="scroll-mt-24">
             <CardHeader className="flex items-center justify-between">
               <CardTitle>Chat with patient (simulation)</CardTitle>
             </CardHeader>
@@ -175,6 +153,10 @@ export default function DoctorAppointmentPage({
               </p>
             </CardContent>
           </Card>
+        </section>
+
+        <section id="status" className="scroll-mt-24">
+          <UpdateStatus />
         </section>
 
         <footer className="mt-2 flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">

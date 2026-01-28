@@ -126,13 +126,19 @@ export default function DoctorDashboard() {
                           Open appointment
                         </Link>
                       </Button>
-                      <Button size="sm" variant="secondary">
-                        <Pill className="mr-1.5 h-3.5 w-3.5" />
-                        Add prescription
+                      <Button asChild size="sm" variant="secondary">
+                        <Link
+                          href={`/doctor/appointment/${appt.id}?edit=prescription#prescription`}
+                        >
+                          <Pill className="mr-1.5 h-3.5 w-3.5" />
+                          Add prescription
+                        </Link>
                       </Button>
-                      <Button size="sm" variant="ghost">
-                        <MessageCircle className="mr-1.5 h-3.5 w-3.5" />
-                        Chat
+                      <Button asChild size="sm" variant="ghost">
+                        <Link href={`/doctor/appointment/${appt.id}#chat`}>
+                          <MessageCircle className="mr-1.5 h-3.5 w-3.5" />
+                          Chat
+                        </Link>
                       </Button>
                     </div>
                   </div>
