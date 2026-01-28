@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Healthcare Access Platform",
-  description: "Prototype for multi-role healthcare access and coordination",
+  description: "Multi-role healthcare access and coordination demo",
 };
 
 export default function RootLayout({

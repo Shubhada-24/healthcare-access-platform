@@ -1,4 +1,5 @@
 import { TopBar } from "@/components/shell/top-bar";
+import { DashboardShell } from "@/components/shell/dashboard-shell";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -26,22 +27,13 @@ export default function WorkerDashboard() {
   return (
     <div className="flex min-h-screen flex-col">
       <TopBar activeRole="worker" />
-      <main className="mx-auto flex w-full max-w-6xl flex-1 flex-col gap-6 px-4 py-6 sm:px-6 lg:px-8">
-        <header className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <h1 className="text-xl font-semibold tracking-tight text-slate-950 dark:text-slate-50">
-              ASHA Worker Dashboard
-            </h1>
-            <p className="text-sm text-slate-600 dark:text-slate-300">
-              See assigned families, high‑risk alerts, and schemes to share.
-            </p>
-          </div>
-          <Badge severity="high">
-            {highRisk} high‑risk patients in your list
-          </Badge>
-        </header>
-
-        <section className="grid gap-6 lg:grid-cols-[1.5fr,1.5fr]">
+      <DashboardShell
+        role="worker"
+        title="ASHA Worker Dashboard"
+        subtitle="See assigned families, high‑risk alerts, and schemes to share."
+        rightActions={<Badge severity="high">{highRisk} high‑risk patients</Badge>}
+      >
+        <section id="patients" className="grid gap-6 lg:grid-cols-[1.5fr,1.5fr]">
           <Card>
             <CardHeader className="flex items-center justify-between">
               <CardTitle>Assigned patients</CardTitle>
@@ -72,7 +64,7 @@ export default function WorkerDashboard() {
             </CardContent>
           </Card>
 
-          <div className="space-y-4">
+          <div id="schemes" className="space-y-4">
             <Card>
               <CardHeader>
                 <CardTitle>Government schemes</CardTitle>
@@ -188,7 +180,7 @@ export default function WorkerDashboard() {
               </div>
               <div className="flex items-center gap-2 rounded-2xl bg-white/80 p-2 ring-1 ring-slate-100 dark:bg-slate-950/80 dark:ring-slate-800">
                 <div className="flex-1 rounded-full bg-slate-50 px-3 py-2 text-xs text-slate-400 dark:bg-slate-900 dark:text-slate-500">
-                  Type a message… (for prototype only)
+                  Type a message… (demo only)
                 </div>
                 <Button
                   size="icon"
@@ -213,7 +205,7 @@ export default function WorkerDashboard() {
             checks relevant schemes.
           </span>
         </footer>
-      </main>
+      </DashboardShell>
     </div>
   );
 }

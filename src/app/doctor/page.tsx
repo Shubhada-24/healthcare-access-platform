@@ -1,4 +1,5 @@
 import { TopBar } from "@/components/shell/top-bar";
+import { DashboardShell } from "@/components/shell/dashboard-shell";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -38,19 +39,11 @@ export default function DoctorDashboard() {
   return (
     <div className="flex min-h-screen flex-col">
       <TopBar activeRole="doctor" />
-      <main className="mx-auto flex w-full max-w-6xl flex-1 flex-col gap-6 px-4 py-6 sm:px-6 lg:px-8">
-        <header className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <h1 className="text-xl font-semibold tracking-tight text-slate-950 dark:text-slate-50">
-              Doctor Dashboard
-            </h1>
-            <p className="text-sm text-slate-600 dark:text-slate-300">
-              Review today&apos;s cases by risk level and jump into an
-              appointment prototype.
-            </p>
-          </div>
-        </header>
-
+      <DashboardShell
+        role="doctor"
+        title="Doctor Dashboard"
+        subtitle="Review today’s cases by risk level and jump into an appointment."
+      >
         <section className="grid gap-4 md:grid-cols-3">
           <Card>
             <CardHeader>
@@ -87,7 +80,7 @@ export default function DoctorDashboard() {
           </Card>
         </section>
 
-        <section className="grid gap-6 lg:grid-cols-[2fr,1.4fr]">
+        <section id="appointments" className="grid gap-6 lg:grid-cols-[2fr,1.4fr]">
           <Card>
             <CardHeader className="flex items-center justify-between">
               <CardTitle>Today&apos;s appointments</CardTitle>
@@ -170,7 +163,7 @@ export default function DoctorDashboard() {
 
             <Card>
               <CardHeader>
-                <CardTitle>Awareness content (prototype)</CardTitle>
+                <CardTitle>Awareness content</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3 text-xs">
                 <p className="text-slate-600 dark:text-slate-300">
@@ -202,7 +195,7 @@ export default function DoctorDashboard() {
             </Card>
           </div>
         </section>
-      </main>
+      </DashboardShell>
     </div>
   );
 }

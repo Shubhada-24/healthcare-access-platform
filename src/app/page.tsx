@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TopBar } from "@/components/shell/top-bar";
-import { HeartPulse, Stethoscope, User2, Users } from "lucide-react";
+import { awarenessVideos } from "@/data/mock";
+import { HeartPulse, PlayCircle, Stethoscope, User2, Users } from "lucide-react";
 import Link from "next/link";
 
 export default function Home() {
@@ -13,7 +14,7 @@ export default function Home() {
           <div className="space-y-6">
             <div className="inline-flex items-center gap-2 rounded-full bg-emerald-100/80 px-3 py-1 text-xs font-medium text-emerald-900 ring-1 ring-emerald-400/40 dark:bg-emerald-900/60 dark:text-emerald-100">
               <HeartPulse className="h-3.5 w-3.5" />
-              Prototype · User flow focused
+              User-flow focused demo
             </div>
             <div className="space-y-3">
               <h1 className="text-balance text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl md:text-5xl dark:text-slate-50">
@@ -21,7 +22,7 @@ export default function Home() {
               </h1>
               <p className="max-w-xl text-balance text-sm text-slate-700 md:text-base dark:text-slate-300">
                 Explore how patients, doctors, and ASHA workers coordinate care
-                in one connected prototype. No real login or backend – just
+                in one connected experience. No real login or backend – just
                 flows and dashboards.
               </p>
             </div>
@@ -52,7 +53,7 @@ export default function Home() {
 
           <Card className="border-emerald-200/60 bg-gradient-to-b from-white/90 to-emerald-50/80 dark:border-emerald-900/70 dark:from-slate-950 dark:to-emerald-950/40">
             <CardHeader className="mb-4 flex items-center justify-between">
-              <CardTitle>Prototype Overview</CardTitle>
+              <CardTitle>Overview</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4 text-sm">
               <ul className="space-y-2 text-slate-700 dark:text-slate-200">
@@ -63,13 +64,67 @@ export default function Home() {
               </ul>
               <div className="mt-4 grid gap-2 rounded-xl bg-white/80 p-3 text-xs text-slate-600 ring-1 ring-emerald-100 dark:bg-slate-950/60 dark:text-slate-300 dark:ring-emerald-900/60">
                 <p className="font-medium text-slate-900 dark:text-slate-50">
-                  This is a non-functional prototype.
+                  This is a demo experience.
                 </p>
                 <p>
                   All data, chats, AI outputs, and maps are mocked to focus only
                   on user journeys and information hierarchy.
                 </p>
               </div>
+            </CardContent>
+          </Card>
+        </section>
+
+        <section className="grid gap-4 md:grid-cols-2">
+          <Card className="border-emerald-200/60 bg-white/80 dark:border-slate-800/80 dark:bg-slate-950/70">
+            <CardHeader className="mb-2">
+              <CardTitle>Awareness videos</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-2">
+              {awarenessVideos.map((v) => (
+                <div
+                  key={v.id}
+                  className="flex items-center justify-between rounded-xl bg-white/70 px-3 py-2 ring-1 ring-emerald-100 dark:bg-slate-950/60 dark:ring-slate-800"
+                >
+                  <div className="min-w-0">
+                    <p className="truncate text-sm font-medium text-slate-900 dark:text-slate-50">
+                      {v.title}
+                    </p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">
+                      {v.duration} · educational content
+                    </p>
+                  </div>
+                  <Button size="sm" variant="outline">
+                    <PlayCircle className="mr-1.5 h-4 w-4" />
+                    Watch
+                  </Button>
+                </div>
+              ))}
+              <p className="pt-1 text-[11px] text-slate-500 dark:text-slate-400">
+                Videos are placeholders in this demo (no streaming).
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="border-emerald-200/60 bg-white/80 dark:border-slate-800/80 dark:bg-slate-950/70">
+            <CardHeader className="mb-2">
+              <CardTitle>Quick start</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-2 text-sm text-slate-700 dark:text-slate-200">
+              <div className="rounded-xl bg-emerald-50 p-3 ring-1 ring-emerald-100 dark:bg-emerald-950/60 dark:ring-emerald-900/60">
+                <p className="text-xs font-semibold text-emerald-900 dark:text-emerald-100">
+                  Recommended demo flow
+                </p>
+                <p className="mt-1 text-xs text-emerald-900/80 dark:text-emerald-100/80">
+                  Patient → Symptom check → Consultation → Chat → Doctor appointment.
+                </p>
+              </div>
+              <Button asChild variant="secondary" size="sm" className="w-full">
+                <Link href="/patient">Start as Patient</Link>
+              </Button>
+              <Button asChild variant="outline" size="sm" className="w-full">
+                <Link href="/doctor">Start as Doctor</Link>
+              </Button>
             </CardContent>
           </Card>
         </section>

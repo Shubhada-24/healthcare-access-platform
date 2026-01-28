@@ -27,7 +27,7 @@ export function PrescriptionEditor() {
   useEffect(() => {
     if (shouldAutoOpen) {
       setOpen(true);
-      // remove ?edit=prescription from the URL after opening (prototype nicety)
+      // remove ?edit=prescription from the URL after opening (demo nicety)
       const sp = new URLSearchParams(Array.from(searchParams.entries()));
       sp.delete("edit");
       const qs = sp.toString();
@@ -79,7 +79,7 @@ export function PrescriptionEditor() {
             <div className="mb-3 flex items-center justify-between gap-2">
               <div>
                 <p className="text-sm font-semibold text-slate-950 dark:text-slate-50">
-                  Prescription editor (prototype)
+                  Prescription editor
                 </p>
                 <p className="text-xs text-slate-600 dark:text-slate-300">
                   Changes are only in-memory (no backend).

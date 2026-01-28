@@ -23,7 +23,7 @@ export default function PatientConsultation() {
         <header className="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-xs font-medium uppercase tracking-wide text-emerald-600 dark:text-emerald-300">
-              Consultation prototype
+              Consultation
             </p>
             <h1 className="text-xl font-semibold tracking-tight text-slate-950 dark:text-slate-50">
               Suggested doctors & chat

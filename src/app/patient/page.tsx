@@ -1,6 +1,7 @@
 "use client";
 
 import { TopBar } from "@/components/shell/top-bar";
+import { DashboardShell } from "@/components/shell/dashboard-shell";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -30,27 +31,21 @@ export default function PatientDashboard() {
   return (
     <div className="flex min-h-screen flex-col">
       <TopBar activeRole="patient" />
-      <main className="mx-auto flex w-full max-w-6xl flex-1 flex-col gap-6 px-4 py-6 sm:px-6 lg:px-8">
-        <header className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <h1 className="text-xl font-semibold tracking-tight text-slate-950 dark:text-slate-50">
-              Patient Dashboard
-            </h1>
-            <p className="text-sm text-slate-600 dark:text-slate-300">
-              Start with a quick symptom check, then see nearby services and
-              reminders.
-            </p>
-          </div>
+      <DashboardShell
+        role="patient"
+        title="Patient Dashboard"
+        subtitle="Start with a quick symptom check, then see nearby services and reminders."
+        rightActions={
           <Button asChild size="sm" variant="secondary">
             <Link href="/patient/consultation">
               <MessageCircleMore className="mr-1.5 h-3.5 w-3.5" />
-              Open consultation flow
+              Consultation
             </Link>
           </Button>
-        </header>
-
+        }
+      >
         <section className="grid gap-6 lg:grid-cols-[1.6fr,1.2fr]">
-          <Card>
+          <Card id="symptoms" className="scroll-mt-24">
             <CardHeader className="flex items-center justify-between">
               <CardTitle>AI Symptom Checker (mock)</CardTitle>
               <Badge severity="medium">Rule-based demo</Badge>
@@ -68,7 +63,7 @@ export default function PatientDashboard() {
           </Card>
 
           <div className="space-y-4">
-            <Card>
+            <Card id="services" className="scroll-mt-24">
               <CardHeader>
                 <CardTitle>Nearest services (simulated)</CardTitle>
               </CardHeader>
@@ -76,7 +71,7 @@ export default function PatientDashboard() {
                 {nearestServices.map((service) => (
                   <button
                     key={service.id}
-                    className="flex w-full items-center justify-between gap-3 rounded-xl bg-white/80 px-3 py-2 text-left text-slate-800 ring-1 ring-emerald-100 transition hover:bg-emerald-50 dark:bg-slate-950/70 dark:text-slate-100 dark:ring-slate-800 dark:hover:bg-emerald-950/60"
+                    className="flex w-full items-center justify-between gap-3 rounded-xl bg-white/80 px-3 py-2 text-left text-slate-800 ring-1 ring-emerald-100 transition hover:-translate-y-0.5 hover:bg-emerald-50 hover:shadow-sm dark:bg-slate-950/70 dark:text-slate-100 dark:ring-slate-800 dark:hover:bg-emerald-950/60"
                   >
                     <span className="flex items-center gap-2">
                       <span className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-900/60 dark:text-emerald-100">
@@ -88,8 +83,7 @@ export default function PatientDashboard() {
                   </button>
                 ))}
                 <p className="pt-1 text-[11px] text-slate-500 dark:text-slate-400">
-                  Map tiles are not loaded – this view assumes static nearest
-                  services.
+                  Map tiles are not loaded – this view assumes static nearest services.
                 </p>
               </CardContent>
             </Card>
@@ -154,11 +148,10 @@ export default function PatientDashboard() {
         <footer className="mt-1 flex items-center gap-2 text-[11px] text-slate-500 dark:text-slate-400">
           <Hospital className="h-3 w-3" />
           <span>
-            Flow to explore: run symptom checker → see AI result → continue to
-            consultation.
+            Flow to explore: run symptom checker → see AI result → continue to consultation.
           </span>
         </footer>
-      </main>
+      </DashboardShell>
     </div>
   );
 }

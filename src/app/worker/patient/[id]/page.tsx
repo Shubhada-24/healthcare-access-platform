@@ -11,12 +11,13 @@ import { mockWorkerPatientChat, workerPatients } from "@/data/mock";
 import { ClipboardList, MessageCircle, NotebookPen } from "lucide-react";
 import { notFound } from "next/navigation";
 
-export default function WorkerPatientView({
+export default async function WorkerPatientView({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  const patient = workerPatients.find((p) => p.id === params.id);
+  const { id } = await params;
+  const patient = workerPatients.find((p) => p.id === id);
   if (!patient) return notFound();
 
   return (
@@ -41,7 +42,7 @@ export default function WorkerPatientView({
         <section className="grid gap-6 lg:grid-cols-[1.4fr,1.6fr]">
           <Card>
             <CardHeader>
-              <CardTitle>Visit notes (prototype)</CardTitle>
+              <CardTitle>Visit notes</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3 text-sm">
               <div className="space-y-1 text-xs">
@@ -65,7 +66,7 @@ export default function WorkerPatientView({
                 <textarea
                   className="min-h-[120px] w-full rounded-xl border border-emerald-200 bg-white/80 p-3 text-xs text-slate-900 shadow-sm outline-none ring-emerald-500/0 transition focus:ring-2 dark:border-slate-700 dark:bg-slate-950/80 dark:text-slate-50"
                   placeholder="Example: Discussed diet, checked BP, educated family about warning signs..."
-                  defaultValue="Prototype only: notes are not saved."
+                  defaultValue="Demo only: notes are not saved."
                 />
                 <Button size="sm" className="mt-1 w-full">
                   <NotebookPen className="mr-1.5 h-3.5 w-3.5" />
@@ -123,7 +124,7 @@ export default function WorkerPatientView({
                 </Button>
               </div>
               <p className="text-[11px] text-slate-500 dark:text-slate-400">
-                Prototype shows how ASHA workers can reassure, remind medicines,
+                Demo shows how ASHA workers can reassure, remind medicines,
                 and coordinate visits.
               </p>
             </CardContent>

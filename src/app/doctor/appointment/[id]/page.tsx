@@ -18,12 +18,13 @@ import {
 } from "lucide-react";
 import { notFound } from "next/navigation";
 
-export default function DoctorAppointmentPage({
+export default async function DoctorAppointmentPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  const appointment = doctorAppointments.find((a) => a.id === params.id);
+  const { id } = await params;
+  const appointment = doctorAppointments.find((a) => a.id === id);
   if (!appointment) return notFound();
 
   const severityMap = {
@@ -39,7 +40,7 @@ export default function DoctorAppointmentPage({
         <header className="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-xs font-medium uppercase tracking-wide text-emerald-600 dark:text-emerald-300">
-              Appointment prototype
+              Appointment
             </p>
             <h1 className="text-xl font-semibold tracking-tight text-slate-950 dark:text-slate-50">
               {appointment.patientName}
@@ -140,7 +141,7 @@ export default function DoctorAppointmentPage({
               </div>
               <div className="flex items-center gap-2 rounded-xl bg-white/80 p-2 ring-1 ring-slate-100 dark:bg-slate-950/80 dark:ring-slate-800">
                 <div className="flex-1 rounded-full bg-slate-50 px-3 py-2 text-xs text-slate-400 dark:bg-slate-900 dark:text-slate-500">
-                  Type a message… (static for prototype)
+                  Type a message… (demo only)
                 </div>
                 <Button size="icon" variant="secondary" className="rounded-full">
                   <MessageCircle className="h-4 w-4" />
